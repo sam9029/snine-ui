@@ -1,0 +1,160 @@
+@import "./config.scss";
+@import "./function.scss";
+@import "./var.scss";
+
+@mixin b($block) {
+  $B: $namespace + "-" + $block !global;
+  .#{$B} {
+    @content;
+  }
+}
+
+/*
+  定义了一个名为 “e” 的 mixin，并接受一个参数 $element。
+  这段代码是一个 Sass（Syntactically Awesome Stylesheets）的 mixin，用于生成指定元素的 CSS 样式。
+  UN @if hitAllSpecialNestRule($selector) 使用条件语句判断是否满足特定条件。
+  UN @content 表示将 mixin 中包含的内容作为 CSS 规则的主体。
+  总体来说，这个 mixin 的作用是根据传入的元素生成对应的 CSS 样式，并根据特定的条件选择不同的规则生成方式。
+*/
+@mixin e($element) {
+  // 定义了一个全局变量 $E，其值为 $element。
+  $E: $element !global;
+  // 定义了一个变量 $selector，其值为 &，表示父选择器。
+  $selector: &;
+  // 定义了一个变量 $currentSelector，其初始值为空字符串。
+  $currentSelector: "";
+  // 开始一个循环，将 $element 中的每个元素赋值给 $unit。
+  @each $unit in $element {
+    // $currentSelector 是当前的选择器。
+    // "." 是选择器前缀，表示类选择器。
+    // $B 是一个占位符，可能是为了保留特定位置的字符。从 b 函数定义的全局 $B 拿
+    // $element-separator 是一个分隔符，用于将元素名称与前缀和后缀分隔开。
+    // $unit 是当前循环的元素。
+    // "," 是选择器后缀，表示选择器以逗号结束。
+    $currentSelector: #{$currentSelector +
+      "." +
+      $B +
+      $element-separator +
+      $unit +
+      ","};
+  }
+
+  // UN UN UN hitAllSpecialNestRule
+  @if hitAllSpecialNestRule($selector) {
+    //使用条件语句判断是否满足特定条件
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          // UN UN UN @content 表示将 mixin 中包含的内容作为 CSS 规则的主体。
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      & +
+      $modifier-separator +
+      $unit +
+      ","};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+// 条件
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+// 颜色
+@mixin commonShadow($color) {
+  @if $color== "primary" {
+    color: $--color-white;
+    background-color: $--color-primary;
+  }
+  @if $color== "success" {
+    color: $--color-white;
+    background-color: $--color-success;
+  }
+  @if $color== "warning" {
+    color: $--color-white;
+    background-color: $--color-warning;
+  }
+  @if $color== "danger" {
+    color: $--color-white;
+    background-color: $--color-danger;
+  }
+  @if $color== "info" {
+    color: $--color-white;
+    background-color: $--color-info;
+  }
+  @if $color== "disabled" {
+    opacity: 0.66;
+    cursor: not-allowed;
+  }
+}
+
+// 类型
+/** @param $name 选择器 */
+@mixin commonType($name) {
+  // 默认样式
+  .#{$name} {
+    color: $--button-default-font-color;
+    background: $--button-default-background-color;
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (primary, success, warning, danger, info) {
+    .#{$curName}#{$type} {
+      @include commonShadow($type);
+    }
+  }
+}
+
+// 尺寸
+/** @param $name 选择器 */
+@mixin commonSize($name) {
+  // 默认尺寸
+  .#{$name} {
+    font-size: $--font-size-base;
+    padding: 10px 12px;
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (medium, small, mini) {
+    .#{$curName}#{$type} {
+      @if $type == "medium" {
+        font-size: $--font-size-medium;
+        padding: 8px 10px;
+      }
+      @if $type == "small" {
+        font-size: $--font-size-small;
+        padding: 6px 8px;
+      }
+      @if $type == "mini" {
+        font-size: $--font-size-mini;
+        padding: 4px 6px;
+      }
+    }
+  }
+}

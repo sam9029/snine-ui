@@ -1,5 +1,7 @@
 # personal-component-set
 
+S9-UI or snine-ui
+
 ## Project setup
 ```
 npm install

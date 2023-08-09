@@ -14,5 +14,7 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    // 取消对 LF 和 CRLF 的检验
+    "linebreak-style": [0, "error", "windows"],
   },
 };

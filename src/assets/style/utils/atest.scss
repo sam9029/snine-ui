@@ -1,0 +1,230 @@
+/* BEM var
+ -------------------------- */
+//#region 
+$--color-primary: #409EFF !default;
+$--color-white: #FFFFFF !default;
+$--color-black: #000000 !default;
+
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; // 53a8ff
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; // 66b1ff
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; // 79bbff
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; // 8cc5ff
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; // a0cfff
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; // b3d8ff
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; // c6e2ff
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; // d9ecff
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; // ecf5ff
+
+$--color-success: #80e050 !default;
+$--color-warning: #ffbb55 !default;
+$--color-danger: #ff5252 !default;
+$--color-info: #909399 !default;
+$--color-disabled: #bbbbbb !default;
+
+$--color-success-light: mix($--color-white, $--color-success, 80%) !default;
+$--color-warning-light: mix($--color-white, $--color-warning, 80%) !default;
+$--color-danger-light: mix($--color-white, $--color-danger, 80%) !default;
+$--color-info-light: mix($--color-white, $--color-info, 80%) !default;
+
+$--color-success-lighter: mix($--color-white, $--color-success, 90%) !default;
+$--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
+$--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
+$--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
+
+$--color-text-primary: #303133 !default;
+$--color-text-regular: #606266 !default;
+$--color-text-secondary: #909399 !default;
+$--color-text-placeholder: #C0C4CC !default;
+
+$--border-color-base: #DCDCDC !default;
+$--border-color-light: #E4E7ED !default;
+$--border-color-lighter: #EBEEF5 !default;
+$--border-color-extra-light: #F2F6FC !default;
+
+
+// Background
+$--background-color-base: #F5F7FA !default;
+
+$--border-base:1px solid $--border-color-base;
+$--border-radius-base:6px;
+//#endregion
+
+
+/* BEM config
+ -------------------------- */
+$namespace: 'sn'; // B 
+$element-separator: '__'; // E $snine-element-separator
+$modifier-separator: '--'; // M $snine-modifier-separator
+$state-prefix: 'is-';
+
+
+/* BEM support Func
+ -------------------------- */
+//#region
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+// 是否 包含修饰符
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, $modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 是否 包含 'is' 状态判断
+@function containWhenFlag($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, '.' + $state-prefix) {
+    @return true
+  } @else {
+    @return false
+  }
+}
+
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ':') {
+    @return true
+  } @else {
+    @return false
+  }
+}
+
+/* 集成 所有判断 
+ -------------------------- */
+@function hitAllSpecialNestRule($selector) {
+  @return containsModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
+}
+//#endregion
+
+/* Mixin
+ -------------------------- */
+//#region
+@mixin b($block) {
+  $B: $namespace + "-" + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+// 定义了一个名为 “e” 的 mixin，并接受一个参数 $element。
+@mixin e($element) {
+  // 定义了一个全局变量 $E，其值为 $element。
+  $E: $element !global;
+  // 定义了一个变量 $selector，其值为 &，表示父选择器。
+  $selector: &;
+  // 定义了一个变量 $currentSelector，其初始值为空字符串。
+  $currentSelector: "";
+  // 开始一个循环，将 $element 中的每个元素赋值给 $unit。
+  @each $unit in $element {
+    // $currentSelector 是当前的选择器。
+    // "." 是选择器前缀，表示类选择器。
+    // $B 是一个占位符，可能是为了保留特定位置的字符。
+    // $element-separator 是一个分隔符，用于将元素名称与前缀和后缀分隔开。
+    // $unit 是当前循环的元素。
+    // "," 是选择器后缀，表示选择器以逗号结束。
+    $currentSelector: #{$currentSelector +
+      "." +
+      $B +
+      $element-separator +
+      $unit +
+      ","};
+  }
+
+  // UN UN UN hitAllSpecialNestRule
+  @if hitAllSpecialNestRule($selector) {
+    //使用条件语句判断是否满足特定条件
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          // UN UN UN @content 表示将 mixin 中包含的内容作为 CSS 规则的主体。
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      & +
+      $modifier-separator +
+      $unit +
+      ","};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+// 条件
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+// 颜色
+@mixin commonShadow($color, $size: 2px) {
+  @if $color== "primary" {
+    color: $--color-white;
+    background-color: $--color-primary;
+  }
+
+  @if $color== "success" {
+    color: $--color-white;
+    background-color: $--color-success;
+  }
+
+  @if $color== "warning" {
+    color: $--color-white;
+    background-color: $--color-warning;
+  }
+
+  @if $color== "danger" {
+    color: $--color-white;
+    background-color: $--color-danger;
+  }
+
+  @if $color== "info" {
+    color: $--color-white;
+    background-color: $--color-info;
+  }
+
+  @if $color== "disabled" {
+    opacity: 0.66;
+    cursor: not-allowed;
+  }
+}
+// 类型
+@mixin commonType($name) {
+  @each $type in (primary, success, warning, danger, info, disabled) {
+    .#{$name}#{$type} {
+      @include commonShadow($type);
+    }
+  }
+}
+//#endregion
