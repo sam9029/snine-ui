@@ -14,7 +14,7 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    // 取消对 LF 和 CRLF 的检验
-    "linebreak-style": [0, "error", "windows"],
+    "linebreak-style": [0, "error", "windows"], //// 修改eslint规则 取消对 LF 和 CRLF 的检验
+    "prettier/prettier": ["error", { endOfLine: "auto" }], //// 不让prettier检测文件每行结束的格式
   },
 };
