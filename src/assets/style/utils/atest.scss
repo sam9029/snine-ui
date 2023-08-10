@@ -1,19 +1,20 @@
 /* BEM var
  -------------------------- */
-//#region 
+
+//#region Color
 $--color-primary: #409EFF !default;
 $--color-white: #FFFFFF !default;
 $--color-black: #000000 !default;
 
-$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; // 53a8ff
-$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; // 66b1ff
-$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; // 79bbff
-$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; // 8cc5ff
-$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; // a0cfff
-$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; // b3d8ff
-$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; // c6e2ff
-$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; // d9ecff
-$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; // ecf5ff
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; /* 8cc5ff */
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; /* a0cfff */
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /* b3d8ff */
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* c6e2ff */
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
 
 $--color-success: #80e050 !default;
 $--color-warning: #ffbb55 !default;
@@ -40,14 +41,35 @@ $--border-color-base: #DCDCDC !default;
 $--border-color-light: #E4E7ED !default;
 $--border-color-lighter: #EBEEF5 !default;
 $--border-color-extra-light: #F2F6FC !default;
+//#endregion
 
+//#region font-size
+$--font-size-base: 14px !default;
+$--font-size-medium: 14px !default;
+$--font-size-small: 12px !default;
+$--font-size-mini: 12px !default;
+//#endregion
 
-// Background
+//#region Background
 $--background-color-base: #F5F7FA !default;
+//#endregion
 
+//#region border
 $--border-base:1px solid $--border-color-base;
 $--border-radius-base:6px;
 //#endregion
+
+//#region //#endregion
+
+
+/* components */ 
+
+//#region Button
+$--button-default-background-color: transparent !default;
+$--button-default-font-color: $--color-text-primary !default;
+$--button-default-border: 1px solid $--color-primary-light-8 !default;
+//#endregion
+
 
 
 /* BEM config
@@ -188,42 +210,109 @@ $state-prefix: 'is-';
   }
 }
 // 颜色
-@mixin commonShadow($color, $size: 2px) {
+@mixin commonShadow($color) {
   @if $color== "primary" {
     color: $--color-white;
     background-color: $--color-primary;
+    &.is-text {
+      color: $--color-primary !important;
+    }
+    &:hover {
+      border: 1px solid $--color-primary-light-8 !important;
+    }
   }
-
   @if $color== "success" {
     color: $--color-white;
     background-color: $--color-success;
+    &.is-text {
+      color: $--color-success !important;
+    }
+    &:hover {
+      border: 1px solid $--color-success-light !important;
+    }
   }
-
   @if $color== "warning" {
     color: $--color-white;
     background-color: $--color-warning;
+    &.is-text {
+      color: $--color-warning !important;
+    }
+    &:hover {
+      border: 1px solid $--color-warning-light !important;
+    }
   }
-
   @if $color== "danger" {
     color: $--color-white;
     background-color: $--color-danger;
+    &.is-text {
+      color: $--color-danger !important;
+    }
+    &:hover {
+      border: 1px solid $--color-danger-light !important;
+    }
   }
-
   @if $color== "info" {
     color: $--color-white;
     background-color: $--color-info;
+    &.is-text {
+      color: $--color-info !important;
+    }
+    &:hover {
+      border: 1px solid $--color-info-light !important;
+    }
   }
-
   @if $color== "disabled" {
     opacity: 0.66;
     cursor: not-allowed;
   }
+  @if $color== "loading" {
+    opacity: 0.66;
+    cursor: auto;
+    pointer-events: none; // 禁止点击事件
+  }
 }
+
 // 类型
+/** @param $name 选择器 */
 @mixin commonType($name) {
-  @each $type in (primary, success, warning, danger, info, disabled) {
-    .#{$name}#{$type} {
+  // 默认样式
+  .#{$name} {
+    color: $--button-default-font-color;
+    background: $--button-default-background-color;
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (primary, success, warning, danger, info) {
+    .#{$curName}#{$type} {
       @include commonShadow($type);
+    }
+  }
+}
+
+// 尺寸
+/** @param $name 选择器 */
+@mixin commonSize($name) {
+  // 默认尺寸
+  .#{$name} {
+    font-size: $--font-size-base;
+    padding: 10px 12px;
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (medium, small, mini) {
+    .#{$curName}#{$type} {
+      @if $type == "medium" {
+        font-size: $--font-size-medium;
+        padding: 8px 10px;
+      }
+      @if $type == "small" {
+        font-size: $--font-size-small;
+        padding: 6px 8px;
+      }
+      @if $type == "mini" {
+        font-size: $--font-size-mini;
+        padding: 4px 6px;
+      }
     }
   }
 }
