@@ -1,26 +1,6 @@
-# personal-component-set
-
+# SNINE-UI
 S9-UI or snine-ui
 
-## Project setup
-```
-npm install
-```
+# Q&A
+- icon 大小 用 `font-size` 设置
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

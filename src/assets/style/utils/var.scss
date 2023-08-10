@@ -60,3 +60,11 @@ $--border-radius-base:6px;
 
 //#region //#endregion
 
+
+/* components */ 
+
+//#region Button
+$--button-default-background-color: transparent !default;
+$--button-default-font-color: $--color-text-primary !default;
+$--button-default-border: 1px solid $--color-primary-light-8 !default;
+//#endregion

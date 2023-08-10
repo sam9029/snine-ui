@@ -91,26 +91,61 @@
   @if $color== "primary" {
     color: $--color-white;
     background-color: $--color-primary;
+    &.is-text {
+      color: $--color-primary;
+    }
+    &:hover {
+      border: 1px solid $--color-primary-light-8;
+    }
   }
   @if $color== "success" {
     color: $--color-white;
     background-color: $--color-success;
+    &.is-text {
+      color: $--color-success;
+    }
+    &:hover {
+      border: 1px solid $--color-success-light;
+    }
   }
   @if $color== "warning" {
     color: $--color-white;
     background-color: $--color-warning;
+    &.is-text {
+      color: $--color-warning;
+    }
+    &:hover {
+      border: 1px solid $--color-warning-light;
+    }
   }
   @if $color== "danger" {
     color: $--color-white;
     background-color: $--color-danger;
+    &.is-text {
+      color: $--color-danger;
+    }
+    &:hover {
+      border: 1px solid $--color-danger-light;
+    }
   }
   @if $color== "info" {
     color: $--color-white;
     background-color: $--color-info;
+    &.is-text {
+      color: $--color-info;
+    }
+    &:hover {
+      border: 1px solid $--color-info-light;
+    }
   }
   @if $color== "disabled" {
     opacity: 0.66;
     cursor: not-allowed;
+  }
+  @if $color== "loading" {
+    opacity: 0.66;
+    cursor: auto;
+    pointer-events: none; // 禁止点击事件
   }
 }
 

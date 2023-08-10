@@ -1,27 +1,43 @@
 @import "../utils/var.scss";
 @import "../utils/mixin.scss";
 
-//#region Button
-$--button-default-background-color: transparent !default;
-$--button-default-font-color: $--color-text-primary !default;
-//#endregion
-
 @include b(button) {
+  box-sizing: border-box;
   cursor: pointer;
-  outline: none; // 去掉聚焦时的轮廓
-  appearance: none;
+  display: inline-flex; // 开启flex模式, 由于还要保持行的特性, 所以是inline-flex
+  justify-content: center;
+  align-items: center; // 中对齐, 为了以后的icon准备的
   white-space: nowrap;
   border: $--border-base;
   border-radius: $--border-radius-base;
+  background-color: unset;
   text-shadow: 0 0 1px $--color-primary-light-9;
+  // vertical-align: middle; // 中对齐, 为了以后的icon准备的
+  // outline: none; // 去掉聚焦时的轮廓
+  // appearance: none; // 设置自定义样式-针对表单元素
 
   & + & {
     margin-left: 5px;
   }
 
+  &:not(.is-disabled) {
+    &:active {
+      transform: translateX(1px) translateY(1px) scale(0.99);
+    }
+    &:hover {
+      opacity: 0.66;
+      border: $--button-default-border;
+    }
+  }
+
+  & > span {
+    margin: 0 3px;
+  }
+
   // 各种类型 由 commonType 遍历生成
   // primary, success, warning, danger, info
-  @at-root {
+  // ~ 同级应用
+  ~ {
     @include commonType(sn-button);
   }
 
@@ -31,17 +47,26 @@ $--button-default-font-color: $--color-text-primary !default;
     @include commonSize(sn-button);
   }
 
+  // 加载时 处理
+  @include when(loading) {
+    @include commonShadow(loading);
+  }
+
   // 禁止时 处理
   @include when(disabled) {
     @include commonShadow(disabled);
   }
 
-  &:not(.is-disabled) {
-    &:active {
-      transform: translateX(1px) translateY(1px) scale(0.99);
-    }
-    &:hover {
-      opacity: 0.7;
-    }
+  // 圆型时 处理
+  @include when(circle) {
+    border-radius: 50%;
+    padding: 10px;
+  }
+
+  // 文字按钮时 处理
+  @include when(text) {
+    border: none !important;
+    color: $--color-primary;
+    background-color: unset;
   }
 }
