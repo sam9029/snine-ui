@@ -6,8 +6,9 @@ import "../examples/assets/style/index.scss";
 // 引入组件
 import SnIcon from "../packages/icon";
 import SnButton from "../packages/button";
+import SnUpload from "../packages/upload";
 
-const components = [SnIcon, SnButton];
+const components = [SnIcon, SnButton, SnUpload];
 
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
@@ -35,4 +36,5 @@ export default {
   install,
   SnIcon,
   SnButton,
+  SnUpload,
 };
