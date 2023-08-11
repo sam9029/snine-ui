@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <sn-button type="">默认按钮</sn-button>
+    <sn-button type="">默认按钮</sn-button>
     <sn-button type="primary">默认按钮</sn-button>
     <sn-button type="info">默认按钮</sn-button>
     <sn-button type="success">默认按钮</sn-button>
@@ -94,7 +94,7 @@
     >
     <sn-button size="mini" text type="danger" icon="chat-round"
       >文字按钮</sn-button
-    > -->
+    >
     <hr />
     <sn-button size="mini" backgroundColor="#66b1ff" color="" text icon="plus"
       >自定义颜色</sn-button
@@ -112,6 +112,7 @@
     <sn-button size="mini" backgroundColor="#c6e2ff" color="#999"
       >自定义颜色</sn-button
     >
+    <hr />
   </div>
 </template>
 
