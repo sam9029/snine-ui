@@ -27,7 +27,7 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
-// 将会在 examples/main.js 中以 SnineUI 引入
+// 将会在 examples/main.js 中以 SnineUI 引入  (UN-未检验-按需引入即转为export{}导出 )
 export default {
   /* 导出的对象必须具有 install，才能被 Vue.use() 方法安装
      在 main.js引入时会被调用

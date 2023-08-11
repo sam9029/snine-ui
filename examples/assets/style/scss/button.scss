@@ -67,6 +67,6 @@
   @include when(text) {
     border: none !important;
     color: $--color-primary;
-    background-color: unset;
+    background-color: unset !important;
   }
 }

@@ -13,6 +13,7 @@
         'is-text': text,
       },
     ]"
+    :style="{ color: color, backgroundColor: backgroundColor }"
     data-el-type="button"
   >
     <!-- 加载 -->
@@ -30,6 +31,8 @@ export default {
     type: String,
     size: String,
     icon: String,
+    color: String,
+    backgroundColor: String,
     text: Boolean,
     circle: Boolean,
     disabled: Boolean,
