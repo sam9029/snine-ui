@@ -1,6 +1,9 @@
+const path = require("path");
 const { defineConfig } = require("@vue/cli-service");
+
 module.exports = defineConfig({
   transpileDependencies: true,
+  publicPath:'./', // 配置打包后根目录路径（解决scss引入icon，打包后路径错误的问题）
   pages: {
     index: {
       // 修改入口
@@ -10,6 +13,7 @@ module.exports = defineConfig({
     },
   },
   chainWebpack: (config) => {
+    config.resolve.alias.set("@", path.resolve(__dirname, "examples")); // 设置根目录为 src 文件夹
     config.module
       .rule("js")
       .include.add("/packages")
@@ -18,6 +22,6 @@ module.exports = defineConfig({
       .loader("babel-loader")
       .tap((options) => {
         return options;
-      });
+      });    
   },
 });

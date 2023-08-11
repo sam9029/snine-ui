@@ -5,9 +5,13 @@ $--icon-height-base: 20px !default;
 
 @font-face {
   font-family: "element-icons";
-  /* chrome, firefox */ /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  src: url("#{$--font-path}/element-icons.woff") format("woff"),
+  /* 
+    chrome, firefox */ /* chrome, firefox, opera, Safari, Android, iOS 4.2+
+    src: url("#{$--font-path}/element-icons.woff") format("woff"),
     url("#{$--font-path}/element-icons.ttf") format("truetype");
+    */
+  src: url("@/assets/style/fonts/element-icons.woff") format("woff"),
+    url("@/assets/style/fonts/element-icons.ttf") format("truetype");
   font-weight: normal;
   font-display: $--font-display;
   font-style: normal;
@@ -32,7 +36,6 @@ $--icon-height-base: 20px !default;
   // vertical-align: baseline;
   // width:$--icon-width-base;
   // height:$--icon-height-base;
-
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;

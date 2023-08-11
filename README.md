@@ -15,7 +15,7 @@ S9-UI or Snine-UI
 > [创建UI组件库__搭建-发布-优化-全套流程](https://segmentfault.com/a/1190000039748000?utm_source=sf-similar-article)
 
 
-# 规划
+# 组件规划
 - Icon
 - Button
 - Upload
@@ -135,3 +135,10 @@ module.exports = defineConfig({
 
 ```
 
+### 解决方案 publicPath配置
+~~~js
+  // vue.config.js
+  module.exports = defineConfig({
+    publicPath:'./', // 配置打包后根目录路径（解决scss引入icon，打包后路径错误的问题）
+  })
+~~~
