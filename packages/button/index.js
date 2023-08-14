@@ -1,4 +1,4 @@
-import SnButton from "./main/button.vue";
+import SnButton from "./src/button.vue";
 
 /* istanbul ignore next */
 SnButton.install = function (Vue) {

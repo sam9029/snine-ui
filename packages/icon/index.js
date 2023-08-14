@@ -1,4 +1,4 @@
-import SnIcon from "./main/icon.vue";
+import SnIcon from "./src/icon.vue";
 
 /* istanbul ignore next */
 SnIcon.install = function (Vue) {

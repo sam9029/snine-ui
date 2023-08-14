@@ -1,4 +1,4 @@
-import SnUpload from "./main/upload.vue";
+import SnUpload from "./src/upload.vue";
 
 /* istanbul ignore next */
 SnUpload.install = function (Vue) {
