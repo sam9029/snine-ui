@@ -2,7 +2,7 @@
   <div>
     <sn-button type="">默认按钮</sn-button>
     <sn-button type="primary">默认按钮</sn-button>
-    <sn-button type="info">默认按钮</sn-button>
+    <!-- <sn-button type="info">默认按钮</sn-button>
     <sn-button type="success">默认按钮</sn-button>
     <sn-button type="warning">默认按钮</sn-button>
     <sn-button type="danger">默认按钮</sn-button>
@@ -112,7 +112,7 @@
     <sn-button size="mini" backgroundColor="#c6e2ff" color="#999"
       >自定义颜色</sn-button
     >
-    <hr />
+    <hr /> -->
   </div>
 </template>
 

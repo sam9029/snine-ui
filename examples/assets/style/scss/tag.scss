@@ -1,0 +1,89 @@
+@import "../utils/var.scss";
+@import "../utils/mixin.scss";
+
+
+// 类型
+/** @param $name 选择器 */
+@mixin commonType($name) {
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (primary, success, warning, danger, info) {
+    .#{$curName}#{$type} {
+      @include commonShadow($type);
+      & > .tag-close {
+        &:hover {
+          background-color: $--color-primary-light-6;
+        }
+      }
+    }
+  }
+}
+
+/** @param $name 选择器 */
+@mixin commonSize($name) {
+  // 默认尺寸
+  .#{$name} {
+    font-size: $--font-size-base;
+    padding: 8px 10px;
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (medium, small, mini) {
+    .#{$curName}#{$type} {
+      @if $type == "medium" {
+        font-size: $--font-size-medium;
+        padding: 6px 8px;
+      }
+      @if $type == "small" {
+        font-size: $--font-size-small;
+        padding: 4px 6px;
+      }
+      @if $type == "mini" {
+        font-size: $--font-size-mini;
+        padding: 2px 4px;
+      }
+    }
+  }
+}
+
+@include b(tag) {
+  box-sizing: border-box;
+  display: inline-flex;
+  border: none;
+  justify-content: center;
+  align-items: center; // 中对齐, 为了以后的icon准备的
+  white-space: nowrap;
+  color: $--tag-default-font-color;
+  background: $--tag-default-background-color;
+  border: $--tag-default-border;
+  border-radius: $--border-radius-base;
+
+  & + & {
+    margin-left: 5px;
+  }
+  & > .tag-close {
+    margin: 0 0 0 3px;
+    padding: 0 1px;
+    border-radius: 100%;
+    &:hover {
+      color: $--color-white;
+      // background-color: $--color-text-placeholder;
+      background-color: $--color-primary;
+    }
+    i {
+      font-size: 12px;
+    }
+  }
+
+  // 各种类型 由 commonType 遍历生成
+  // primary, success, warning, danger, info
+  // ~ 同级应用
+  ~ {
+    @include commonType(sn-tag);
+  }
+  // 各种尺寸 由 commonSize 遍历生成
+  // medium, small, mini
+  @at-root {
+    @include commonSize(sn-tag);
+  }
+}

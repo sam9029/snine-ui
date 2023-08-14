@@ -75,4 +75,16 @@ $--border-radius-base:6px;
 $--button-default-background-color: transparent !default;
 $--button-default-font-color: $--color-text-primary !default;
 $--button-default-border: 1px solid $--color-primary-light-8 !default;
+// $--button-default-padding: 10px 12px !default;
+// $--button-medium-padding: 8px 10px !default;
+// $--button-small-padding: 6px 8px !default;
+// $--button-mini-padding: 4px 6px !default;
+//#endregion
+
+
+//#region tag
+$--tag-default-background-color: $--color-primary-light-9 !default;
+$--tag-default-font-color: $--color-primary-light-3 !default;
+$--tag-default-border: 1px solid $--color-primary-light-8 !default;
+$--tag-close-font-color: $--color-primary !default;
 //#endregion
