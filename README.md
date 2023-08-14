@@ -16,10 +16,13 @@ S9-UI or Snine-UI
 
 
 # 组件规划
-- Icon
-- Button
-- Upload
-- Select
+- Icon **✔**
+- Button **✔**
+- Upload **UN**
+- tag **UN**
+- Select **UN**
+- tabs
+- Card
 - Cascader
 - Switch
 - Table
@@ -81,6 +84,9 @@ $--icon-height-base: 20px !default;
 ```
 
 - **vue.config.js 配置**
+
+**注意：`fonts/element-icons.ff18efd1.woff` 和 `./fonts/element-icons.ff18efd1.woff` 效果是一致的**
+
 ```js
 // 隐去的是 试过但是无效的
 const { defineConfig } = require("@vue/cli-service");
