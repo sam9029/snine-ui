@@ -1,6 +1,6 @@
 <template>
   <div>
     <hr />
-    <sn-upload></sn-upload>
+    <sn-upload accept=".png,.jpg"></sn-upload>
   </div>
 </template>

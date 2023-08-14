@@ -7,8 +7,9 @@ import "../examples/assets/style/index.scss";
 import SnIcon from "../packages/icon";
 import SnButton from "../packages/button";
 import SnUpload from "../packages/upload";
+import SnSelect from "../packages/select";
 
-const components = [SnIcon, SnButton, SnUpload];
+const components = [SnIcon, SnButton, SnUpload, SnSelect];
 
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
@@ -37,4 +38,5 @@ export default {
   SnIcon,
   SnButton,
   SnUpload,
+  SnSelect,
 };

@@ -1,0 +1,11 @@
+@import "../utils/var.scss";
+@import "../utils/mixin.scss";
+
+@include b(sn-upload) {
+    // 隐藏 input[type='file'] 节点
+    @at-root .sn-upload-input {
+      display: none;
+    }
+
+    
+}
