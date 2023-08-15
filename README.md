@@ -4,7 +4,7 @@ S9-UI or Snine-UI
 # 创建UI组件库及发布
 ## init搭建目录
 
-![](https://segmentfault.com/img/remote/1460000039748003)
+![](https://image-static.segmentfault.com/229/604/2296042972-dcab79c13f485b8b_fix732)
 
 ## BEM思想
 ## icon 引入
@@ -18,9 +18,9 @@ S9-UI or Snine-UI
 # 组件规划
 - Icon **✔**
 - Button **✔**
-- Upload **UN**
-- tag **UN**
+- tag **✔**
 - Select **UN**
+- Upload **UN**
 - tabs
 - Card
 - Cascader
