@@ -6,7 +6,7 @@
       <!-- <SnIcon /> -->
       <!-- <SnUpload /> -->
       <SnTag />
-      <!-- <SnSelect /> -->
+      <SnSelect />
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ import SnButton from "./demo/SnButton.vue";
 // import SnIcon from "./demo/SnIcon.vue";
 // import SnUpload from "./demo/SnUpload.vue";
 import SnTag from "./demo/SnTag.vue";
-// import SnSelect from "./demo/SnSelect.vue";
+import SnSelect from "./demo/SnSelect.vue";
 export default {
   name: "APP",
   components: {
@@ -24,7 +24,7 @@ export default {
     // SnIcon,
     // SnUpload,
     SnTag,
-    // SnSelect,
+    SnSelect,
   },
 };
 </script>

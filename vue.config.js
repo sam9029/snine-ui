@@ -22,6 +22,6 @@ module.exports = defineConfig({
       .loader("babel-loader")
       .tap((options) => {
         return options;
-      });    
+      });
   },
 });

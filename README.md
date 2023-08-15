@@ -2,14 +2,24 @@
 S9-UI or Snine-UI
 
 # 创建UI组件库及发布
-## init搭建目录
-
+## 1.init搭建目录
 ![](https://image-static.segmentfault.com/229/604/2296042972-dcab79c13f485b8b_fix732)
 
-## BEM思想
-## icon 引入
-## 打包
-## 发布
+### 1.1.文件结构
+
+### 1.2. packages component 模板结构
+
+### 1.3. 全局注册
+
+## 2.BEM思想
+block element modifier
+
+## 3.打包
+
+
+
+## 4.npm发布
+
 
 > 参考 reference
 > [创建UI组件库__搭建-发布-优化-全套流程](https://segmentfault.com/a/1190000039748000?utm_source=sf-similar-article)

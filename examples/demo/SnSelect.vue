@@ -1,3 +1,6 @@
 <template>
-  <sn-select></sn-select>
+  <div>
+    <hr />
+    <sn-select></sn-select>
+  </div>
 </template>
