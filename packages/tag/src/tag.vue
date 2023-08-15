@@ -5,6 +5,7 @@
       type ? 'sn-tag--' + type : '',
       size ? 'sn-tag--' + size : '',
     ]"
+    @click="handleClick"
   >
     <span v-if="$slots.default">
       <slot>tags</slot>
@@ -30,9 +31,11 @@ export default {
     return {};
   },
   methods: {
+    handleClick(e) {
+      this.$emit("click", e);
+    },
     handleClose(e) {
-      // // dev-log
-      console.log("[Dev_Log][]_>>>", e, e.parent);
+      this.$emit("close", e);
     },
   },
   mounted() {},
