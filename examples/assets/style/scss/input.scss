@@ -1,0 +1,167 @@
+@import "../utils/var.scss";
+@import "../utils/mixin.scss";
+
+@include b(input) {
+  width: 200px;
+  box-sizing: border-box;
+  display: flex;
+  vertical-align: baseline;
+
+  @include e(inner-wrapper) {
+    width: 100%;
+    position: relative;
+  }
+  @include e(inner) {
+    width: 100%;
+  }
+
+  & + & {
+    margin-top: 10px;
+  }
+
+  & {
+    input[type=""],
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    textarea {
+      // appearance: none;
+      box-sizing: border-box;
+      font-family: Avenir, Helvetica, Arial, sans-serif; // 防止 textarea 字体被默认的 monospace 字体覆盖
+      outline: none;
+      border: $--border-base;
+      padding: 9px 15px 10px 15px;
+      border-radius: $--input-border-radius-base;
+      color: $--color-text-primary; //输入文字颜色
+
+      &:focus {
+        border-color: $--color-primary-light-3;
+      }
+
+      &::placeholder {
+        color: $--color-text-placeholder;
+      }
+    }
+  }
+
+  // 关于input [type=number]时上下的操作按 控制UN
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: none;
+  }
+  // 内容 样式&位置
+  @include e(append) {
+    cursor: pointer;
+    padding: 0 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: $--input-append-color-text;
+    background-color: $--icon-append-background-color;
+    border-radius: $--input-border-radius-base;
+    border: $--border-base;
+  }
+  @include e(prepend-wrapper) {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  @include e(append-wrapper) {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  // ICON 样式&位置
+  @include e(icon-wrapper) {
+    cursor: pointer;
+    color: $--input-icon-color-text;
+  }
+  @include e(prefixIcon) {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+  @include e(suffixIcon) {
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+  @include e(clearable) {
+    display: none;
+  }
+  // & 代表 sn-input
+  // ~ 代表 同级
+  // 后面 & 是为了 让里面的 m 函数找到父元素
+  & ~ & {
+    @include m(prepend) {
+      & {
+        @include e(inner-wrapper) {
+          input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+    }
+    @include m(append) {
+      & {
+        @include e(inner-wrapper) {
+          input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+  }
+  // 处理有图标时 input的缩进
+  & ~ & {
+    @include m(prefix) {
+      & {
+        @include e(inner-wrapper) {
+          input {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+    @include m(suffix) {
+      & {
+        @include e(inner-wrapper) {
+          input {
+            padding-right: 30px;
+          }
+        }
+      }
+    }
+  }
+
+
+  // hover
+  &:hover{
+    @include e(clearable) {
+      display: unset;
+      // color: $--color-danger-light;
+    }
+    @include e(inner) {
+      border: $--input-hover-border;
+    }
+  }
+  // 禁用
+  @include when(input-disabled) {
+    input,
+    textarea {
+      cursor: not-allowed;
+    }
+    @include e(icon-wrapper) {
+      cursor: not-allowed;
+    }
+    @include e(append) {
+      cursor: not-allowed;
+    }
+
+  }
+
+}
