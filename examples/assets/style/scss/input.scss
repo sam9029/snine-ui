@@ -1,6 +1,37 @@
 @import "../utils/var.scss";
 @import "../utils/mixin.scss";
 
+@mixin commonSize($name) {
+  // 默认尺寸
+  .#{$name} {
+    input,
+    textarea {
+      font-size: $--font-size-base;
+      padding: 10px 15px;
+    }
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (medium, small, mini) {
+    .#{$curName}#{$type} {
+      input {
+        @if $type == "medium" {
+          font-size: $--font-size-medium;
+          padding: 8px 15px;
+        }
+        @if $type == "small" {
+          font-size: $--font-size-small;
+          padding: 6px 15px;
+        }
+        @if $type == "mini" {
+          font-size: $--font-size-mini;
+          padding: 4px 15px;
+        }
+      }
+    }
+  }
+}
+
 @include b(input) {
   width: 200px;
   box-sizing: border-box;
@@ -30,18 +61,28 @@
       font-family: Avenir, Helvetica, Arial, sans-serif; // 防止 textarea 字体被默认的 monospace 字体覆盖
       outline: none;
       border: $--border-base;
-      padding: 9px 15px 10px 15px;
+      padding: 10px 15px;
       border-radius: $--input-border-radius-base;
       color: $--color-text-primary; //输入文字颜色
 
       &:focus {
-        border-color: $--color-primary-light-3;
+        border-color: $--color-primary-light-3;        
       }
 
       &::placeholder {
         color: $--color-text-placeholder;
       }
     }
+
+    textarea {
+      min-width: 200px;
+      min-height: 36px;
+    }
+  }
+
+  // 尺寸
+  ~ {
+    @include commonSize(sn-input);
   }
 
   // 关于input [type=number]时上下的操作按 控制UN
@@ -91,6 +132,12 @@
   @include e(clearable) {
     display: none;
   }
+  // 字数限制
+  @include e(count) {
+    font-size: 12px;
+    background-color: $--color-white;
+  }
+
   // & 代表 sn-input
   // ~ 代表 同级
   // 后面 & 是为了 让里面的 m 函数找到父元素
@@ -138,9 +185,8 @@
     }
   }
 
-
   // hover
-  &:hover{
+  &:hover {
     @include e(clearable) {
       display: unset;
       // color: $--color-danger-light;
@@ -155,13 +201,17 @@
     textarea {
       cursor: not-allowed;
     }
+    input:disabled,
+    textarea:disabled {
+      background-color: $--input-disabled-background-color;
+    }
     @include e(icon-wrapper) {
+      // 禁止 clearable icon 的清空事件
+      pointer-events: none;
       cursor: not-allowed;
     }
     @include e(append) {
       cursor: not-allowed;
     }
-
   }
-
 }

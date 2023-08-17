@@ -42,6 +42,13 @@ block element modifier
 - Checkbox
 
 # Q&A
+
+## 单文件 忽视 eslint 检查
+- 头部加入如下 注释即可
+~~~js
+/*eslint-disable*/
+~~~
+
 ## icon 大小 用 `font-size` 设置
 
 ## 使用webpack时打包后-解析的scss文件中的字体路径出错 

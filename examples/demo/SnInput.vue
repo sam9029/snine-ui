@@ -21,21 +21,23 @@
       <span slot="append">end</span>
     </sn-input>
     <sn-input v-model="InputValue" clearable />
+    <sn-input v-model="InputValue" clearable disabled />
     <!-- <sn-input v-model="InputValue" prefixIcon="sn-icon-plus">
       <span slot="prepend">pre</span>
     </sn-input>
-    <sn-input v-model="InputValue" suffixIcon="sn-icon-search">
+    <sn-input size="medium" v-model="InputValue" suffixIcon="sn-icon-search">
       <span slot="append">end</span>
     </sn-input>
     <sn-input
       v-model="InputValue"
+      size="small"
       prefixIcon="sn-icon-plus"
       suffixIcon="sn-icon-search"
     >
       <span slot="prepend">pre</span>
       <span slot="append">end</span>
     </sn-input>
-    <sn-input v-model="InputValue" prefixIcon="sn-icon-plus">
+    <sn-input size="mini" v-model="InputValue" prefixIcon="sn-icon-plus">
       <span slot="append">end</span>
     </sn-input>
     <sn-input v-model="InputValue" suffixIcon="sn-icon-search">
@@ -58,7 +60,7 @@
     <hr />
     <sn-input type="" v-model="InputValue" />
     <sn-input type="password" v-model="InputValue" />
-    <sn-input type="number" v-model="InputValue" />
+    <sn-input type="number" v-model="InputValue" placeholder="input-number" />
     <!-- <sn-input type="color" v-model="InputValue" /> -->
     <!-- <sn-input type="range" v-model="InputValue" /> -->
     <!-- <sn-input type="radio" v-model="InputValue" /> -->
@@ -81,6 +83,29 @@
       prefixIcon="sn-icon-plus"
       suffixIcon="sn-icon-search"
     />
+    <!-- <hr />
+    <sn-input v-model="InputValue" />
+    <sn-input v-model="InputValue" size="" placeholder="input-normal" />
+    <sn-input v-model="InputValue" size="medium" placeholder="input-medium" />
+    <sn-input v-model="InputValue" size="small" placeholder="input-small" />
+    <sn-input v-model="InputValue" size="mini" placeholder="input-mini" /> -->
+    <hr />
+    <sn-input
+      v-model="InputValue"
+      type="number"
+      :min="0"
+      :showWordLimit="true"
+    />
+    <sn-input
+      v-model="InputValue"
+      type="number"
+      :max="10"
+      :showWordLimit="true"
+    />
+    <sn-input v-model="InputValue" :maxlength="10" />
+    <sn-input v-model="InputValue" :minlength="10" />
+    <sn-input v-model="InputValue" :maxlength="10" :showWordLimit="true" />
+    <sn-input v-model="InputValue" :minlength="10" :showWordLimit="true" />
   </div>
 </template>
 
@@ -88,8 +113,9 @@
 export default {
   data() {
     return {
-      InputValue: "12",
+      InputValue: "SaaS",
     };
   },
+  beforeCreate() {},
 };
 </script>

@@ -2,12 +2,12 @@
   <div
     :class="[
       'sn-input',
+      size ? 'sn-input--' + size : '',
       {
         'sn-input--prepend': $slots.prepend,
         'sn-input--append': $slots.append,
         'sn-input--prefix': prefixIcon,
         'sn-input--suffix': suffixIcon,
-        'is-input-disabled': disabled,
         'is-input-disabled': disabled,
       },
     ]"
@@ -34,10 +34,12 @@
         <input
           ref="input"
           class="sn-input__inner"
-          :type="type"
+          :type="renderType"
           :value="curInputValue"
           :placeholder="placeholder"
           :disabled="disabled"
+          :maxlength="maxlength"
+          :minlength="minlength"
           @focus="handleFocus"
           @blur="handleBlur"
           @change="handleChange"
@@ -57,6 +59,18 @@
           class="sn-icon-circle-close sn-input__clearable sn-input__icon-wrapper sn-input__suffixIcon"
           @click.stop="handleClearInputValue"
         ></i>
+        <!-- 密码隐显 -->
+        <i
+          v-if="type == 'password'"
+          class="sn-icon-view sn-input__clearable sn-input__icon-wrapper sn-input__suffixIcon"
+          @click.stop="handleControlPwdShow"
+        ></i>
+        <!-- 字数限制 -->
+        <i
+          v-if="isShowWordLimit"
+          class="sn-input__count sn-input__icon-wrapper sn-input__suffixIcon"
+          >{{ curWordage }} / {{ LimitWordage }}</i
+        >
       </div>
       <!-- 后置内容 -->
       <div
@@ -75,12 +89,15 @@
       :value="curInputValue"
       :placeholder="placeholder"
       :disabled="disabled"
+      :max="max"
+      :min="min"
       @focus="handleFocus"
       @blur="handleBlur"
       @change="handleChange"
       @input="handleInputValueChange"
       :cols="areaCols"
       :rows="areaRows"
+      :style="{ resize: disabled ? 'none' : 'auto' }"
     ></textarea>
   </div>
 </template>
@@ -95,9 +112,15 @@ export default {
     size: String,
     disabled: Boolean,
     clearable: Boolean,
+    showWordLimit: Boolean,
     // Icon
     prefixIcon: String,
     suffixIcon: String,
+    // 字数限制
+    maxlength: Number, // text
+    minlength: Number, // text
+    max: Number, // number
+    min: Number, // number
     // base
     type: {
       type: String,
@@ -116,10 +139,30 @@ export default {
   },
   data() {
     return {
+      renderType: this.type,
       curInputValue: this.value,
     };
   },
-  computed: {},
+  computed: {
+    // 字数统计
+    isShowWordLimit() {
+      if (this.showWordLimit) {
+        if (["text", "textarea"].includes(this.type)) {
+          return this.showWordLimit;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    },
+    curWordage() {
+      return this.curInputValue.length;
+    },
+    LimitWordage() {
+      return this.maxlength || "∞";
+    },
+  },
   watch: {
     // 监听——实现外部自定义父组件v-model绑定值的数据响应式
     curInputValue: {
@@ -148,7 +191,10 @@ export default {
     handleClearInputValue() {
       if (this.curInputValue) this.curInputValue = "";
     },
-
+    handleControlPwdShow() {
+      if (this.renderType == "password") return (this.renderType = "text");
+      if (this.renderType == "text") return (this.renderType = "password");
+    },
     //#endregion
   },
   mounted() {},
@@ -156,15 +202,16 @@ export default {
 </script>
 
 <!-- 
-  type input/textarea
-  icon(input外内容、input内元素)
-  浮动border
-  size
-  禁用
-  可清除clearable
-  输入长度限制
-  密码显示
+  type input/textarea ✔
+  icon(input外内容、input内元素) ✔
+  浮动border ✔
+  size ✔
+  禁用 ✔
+  可清除clearable ✔
+  密码显示 ✔
+  输入长度限制 ✔
+  字数验证
 
-  事件绑定
-  失焦、聚焦、输入input、改变change
+  事件绑定 
+  失焦、聚焦、输入input、改变change  ✔
  -->

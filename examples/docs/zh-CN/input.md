@@ -107,3 +107,7 @@ v-model在input元素上时
 前置元素
 后置内容
 后置元素
+
+# input 密码框控制隐藏显示
+
+控制 type = 'text' or type = 'password'
