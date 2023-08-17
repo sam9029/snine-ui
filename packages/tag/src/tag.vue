@@ -41,3 +41,13 @@ export default {
   mounted() {},
 };
 </script>
+
+<!-- 
+  尺寸 ✔
+  类型 ✔
+
+  事件绑定
+  点击 ✔
+  关闭 ✔
+
+ -->

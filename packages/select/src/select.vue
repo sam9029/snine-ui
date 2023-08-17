@@ -30,4 +30,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<!-- 
+  基础下拉 
+  tag 选中
+  远程下拉
+
+  事件绑定
+  选中事件
+  改变事件
+
+ -->

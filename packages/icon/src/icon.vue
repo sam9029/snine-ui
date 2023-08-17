@@ -12,5 +12,5 @@ export default {
 </script>
 
 <!-- 
-  icon类型
+  icon类型 ✔
  -->
