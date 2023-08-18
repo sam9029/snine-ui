@@ -106,6 +106,12 @@
     <sn-input v-model="InputValue" :minlength="10" />
     <sn-input v-model="InputValue" :maxlength="10" :showWordLimit="true" />
     <sn-input v-model="InputValue" :minlength="10" :showWordLimit="true" />
+    <sn-input
+      v-model="InputValue"
+      readonly
+      :minlength="10"
+      :showWordLimit="true"
+    />
   </div>
 </template>
 

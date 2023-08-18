@@ -2,7 +2,7 @@
   <!-- 不选原生 select，因为很多功能样式不能自定义，例如多选 -->
   <div class="sn-select">
     <!-- 选中 & 单选 -->
-    <input
+    <sn-input
       type="text"
       v-model="curCheckedLabel"
       :placeholder="placeholder"
@@ -33,10 +33,12 @@
 
 <script>
 // import SnOption from "./option.vue";
+import SnInput from "../../input/src/input.vue";
 export default {
   name: "SnSelect",
   components: {
     // SnOption,
+    SnInput,
   },
   props: {
     value: [String, Number],
