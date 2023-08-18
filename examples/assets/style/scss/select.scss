@@ -1,6 +1,108 @@
 @import "../utils/var.scss";
 @import "../utils/mixin.scss";
 
-@include b(select){
-    
+// 尺寸
+/** @param $name 选择器 */
+@mixin commonSize($name) {
+  // 默认尺寸
+  .#{$name} {
+    font-size: $--font-size-base;
+    padding: 10px 12px;
+  }
+  //拼合选择器 'sn-elname--'
+  $curName: #{$name + $modifier-separator};
+  @each $type in (medium, small, mini) {
+    .#{$curName}#{$type} {
+      @if $type == "medium" {
+        font-size: $--font-size-medium;
+        padding: 8px 10px;
+      }
+      @if $type == "small" {
+        font-size: $--font-size-small;
+        padding: 6px 8px;
+      }
+      @if $type == "mini" {
+        font-size: $--font-size-mini;
+        padding: 4px 6px;
+      }
+    }
+  }
+}
+
+@include b(select) {
+  width: fit-content;
+  position: relative;
+
+  input {
+    width: 250px;
+    box-sizing: border-box;
+    outline: none;
+    border: $--border-base;
+    padding: 10px 15px;
+    border-radius: $--input-border-radius-base;
+    color: $--color-text-primary; //输入文字颜色
+
+    &:focus {
+      border-color: $--color-primary-light-3;
+    }
+
+    &::placeholder {
+      font-size: $--font-size-base;
+      color: $--color-text-placeholder;
+    }
+  }
+
+  @include e(popper) {
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(100% + 10px);
+    color: $--color-text-regular; //输入文字颜色
+    border: $--border-base;
+    box-shadow: $--box-shadow-base;
+    border-radius: $--input-border-radius-base;
+    padding: 10px 0;
+
+    // 三角 UN
+    @include e(popper-arrow) {
+      border: $--border-base;
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 8px;
+      border-top-width: 0;
+      border-bottom: 8px solid;
+      //   border-bottom-color: #ebeef5;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      box-shadow: $--box-shadow-base;
+      border-style: solid;
+    }
+
+    // 内部下拉
+    @include e(downdrop-wrapper) {
+      // sn-select-downdrop-wrapper -- ul
+      user-select: none;
+      margin: 0; // 清除ul元素默认margin
+      padding: 0; // 清除ul元素默认padding
+      font-size: $--font-size-base;
+      @include e(downdrop-item) {
+        // sn-select-downdrop-item -- li
+        list-style-type: none;
+        cursor: pointer;
+        height: 34px;
+        padding: 0px 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &:hover {
+          background-color: $--border-color-extra-light;
+        }
+      }
+      @include m(empty){
+        color: $--color-text-placeholder;
+      }
+    }
+  }
 }

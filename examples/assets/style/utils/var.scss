@@ -75,6 +75,8 @@ $--border-color-base: #dcdcdc !default;
 $--border-color-light: #e4e7ed !default;
 $--border-color-lighter: #ebeef5 !default;
 $--border-color-extra-light: #f2f6fc !default;
+
+$--box-shadow-base: 0 2px 12px 0 rgba(0,0,0,.1);
 //#endregion
 
 //#region font-size
@@ -130,3 +132,9 @@ $--input-append-color-text: $--color-text-secondary !default;
 $--input-icon-color-text: $--color-text-placeholder !default;
 $--input-disabled-background-color: $--border-color-light !default;
 //#endregion
+
+
+//#region select
+// $--input-border-radius-base:$--border-radius-base /2 !default;
+//#endregion
+

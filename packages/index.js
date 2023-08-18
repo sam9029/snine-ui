@@ -9,9 +9,18 @@ import SnButton from "../packages/button";
 import SnUpload from "../packages/upload";
 import SnTag from "../packages/tag";
 import SnSelect from "../packages/select";
+import SnOption from "../packages/option";
 import SnInput from "../packages/input";
 
-const components = [SnIcon, SnButton, SnUpload, SnTag, SnSelect, SnInput];
+const components = [
+  SnIcon,
+  SnButton,
+  SnUpload,
+  SnTag,
+  SnSelect,
+  SnOption,
+  SnInput,
+];
 
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
@@ -42,5 +51,6 @@ export default {
   SnUpload,
   SnTag,
   SnSelect,
+  SnOption,
   SnInput,
 };
