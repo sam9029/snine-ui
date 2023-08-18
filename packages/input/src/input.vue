@@ -40,6 +40,7 @@
           :disabled="disabled"
           :maxlength="maxlength"
           :minlength="minlength"
+          :readonly="readonly"
           @focus="handleFocus"
           @blur="handleBlur"
           @change="handleChange"
@@ -112,6 +113,7 @@ export default {
     size: String,
     disabled: Boolean,
     clearable: Boolean,
+    readonly: Boolean,
     showWordLimit: Boolean,
     // Icon
     prefixIcon: String,
