@@ -29,8 +29,8 @@ block element modifier
 - Icon **✔**
 - Button **✔**
 - tag **✔**
-- Select **UN**
-- Upload **UN**
+- Select **UN** --hard
+- Upload **UN** --hard
 - tabs
 - Card
 - Cascader

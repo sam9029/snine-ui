@@ -7,7 +7,8 @@
       <!-- <SnUploadComp /> -->
       <!-- <SnTagComp /> -->
       <!-- <SnInputComp /> -->
-      <SnSelectComp />
+      <!-- <SnSelectComp /> -->
+      <SnRadioComp />
     </div>
   </div>
 </template>
@@ -18,7 +19,8 @@
 // import SnUploadComp from "./demo/SnUpload.vue";
 // import SnTagComp from "./demo/SnTag.vue";
 // import SnInputComp from "./demo/SnInput.vue";
-import SnSelectComp from "./demo/SnSelect.vue";
+// import SnSelectComp from "./demo/SnSelect.vue";
+import SnRadioComp from "./demo/SnRadio.vue";
 export default {
   name: "APP",
   components: {
@@ -27,7 +29,7 @@ export default {
     // SnUploadComp,
     // SnTagComp,
     // SnInputComp,
-    SnSelectComp,
+    SnRadioComp,
   },
 };
 </script>

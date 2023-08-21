@@ -1,0 +1,54 @@
+@import "../utils/var.scss";
+@import "../utils/mixin.scss";
+
+@include b(radio) {
+  width: fit-content;
+  display: inline-flex;
+  // vertical-align: -webkit-baseline-middle;
+  justify-content: center;
+  align-items: baseline;
+  color: $--color-text-primary;
+  font-size: $--font-size-base;
+
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  // radio
+  & > {
+    input {
+      /* 隐藏原生radio */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+
+      border: 1px solid $--border-color-base;
+      margin-right: 5px;
+      transition: 0.2s all linear;
+
+      position: relative;
+      top: 4px;
+    }
+
+    /* 选中状态图标 */
+    input:checked {
+      border: 6px solid $--color-primary;
+    }
+  }
+
+  // 禁用
+  @include when(radio-disabled) {
+    cursor: not-allowed;
+    user-select: none;
+    color: $--color-text-placeholder;
+    input,
+    label {
+      pointer-events: none;
+    }
+  }
+}

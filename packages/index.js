@@ -11,6 +11,7 @@ import SnTag from "../packages/tag";
 import SnSelect from "../packages/select";
 import SnOption from "../packages/option";
 import SnInput from "../packages/input";
+import SnRadio from "../packages/radio";
 
 const components = [
   SnIcon,
@@ -20,6 +21,7 @@ const components = [
   SnSelect,
   SnOption,
   SnInput,
+  SnRadio,
 ];
 
 const install = function (Vue, opts = {}) {
@@ -53,4 +55,5 @@ export default {
   SnSelect,
   SnOption,
   SnInput,
+  SnRadio,
 };
