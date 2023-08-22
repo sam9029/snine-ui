@@ -12,6 +12,8 @@
       :disabled="item.disabled"
       :labelPosition="item.labelPosition"
     />
+    <hr />
+    <sn-radio-group />
     <!-- <sn-radio v-model="opt2" label="选项1" /> -->
   </div>
 </template>
