@@ -2,8 +2,45 @@
 S9-UI or Snine-UI
 
 # 创建UI组件库及发布
-## 1.init搭建目录
+
+## 1. vue/cli（推荐） 或其他方式创建项目模板文件
+
+> vue/cli（推荐）记得选择 (babel)/(CSS Pre-processors)/(Linter / Formatter)
+
+## 2. init手动初始化项目目录
 ![](https://image-static.segmentfault.com/229/604/2296042972-dcab79c13f485b8b_fix732)
+
+## 3. webpack 配置项目
+~~~js
+const path = require("path");
+const { defineConfig } = require("@vue/cli-service");
+
+module.exports = defineConfig({
+  transpileDependencies: true,
+  publicPath: "./", // 配置打包后根目录路径（解决scss引入icon，打包后路径错误的问题）
+  pages: {
+    index: {
+      // 修改入口
+      entry: "examples/main.js",
+      template: "public/index.html",
+      filename: "index.html",
+    },
+  },
+  chainWebpack: (config) => {
+    config.resolve.alias.set("@", path.resolve(__dirname, "examples")); // 设置根目录为 src 文件夹
+    config.module
+      .rule("js")
+      .include.add("/packages")
+      .end()
+      .use("babel")
+      .loader("babel-loader")
+      .tap((options) => {
+        return options;
+      });
+  },
+});
+~~~
+
 
 ### 1.1.文件结构
 
@@ -11,12 +48,10 @@ S9-UI or Snine-UI
 
 ### 1.3. 全局注册
 
-## 2.BEM思想
+## 4. BEM思想
 block element modifier
 
-## 3.打包
-
-
+## 5. 打包
 
 ## 4.npm发布
 

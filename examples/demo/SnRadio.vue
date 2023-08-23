@@ -1,19 +1,27 @@
 <template>
   <div>
-    {{ valueTest }}
     <hr />
+    <p class="choose-value">{{ valueTest }} ||</p>
     <!-- 组件使用 -->
     <sn-radio
       v-for="item in radioDemo"
       v-model="valueTest"
       :key="item.label"
-      :name="item.name"
+      :radioName="item.name"
       :label="item.label"
       :disabled="item.disabled"
       :labelPosition="item.labelPosition"
     />
     <hr />
-    <sn-radio-group />
+    <p class="choose-value">{{ valueGroupTest }} ||</p>
+    <sn-radio-group v-model="valueGroupTest">
+      <sn-radio
+        v-for="item in radioGroupDemo"
+        :key="item.label"
+        :label="item.label"
+        :disabled="item.disabled"
+      />
+    </sn-radio-group>
     <!-- <sn-radio v-model="opt2" label="选项1" /> -->
   </div>
 </template>
@@ -49,6 +57,25 @@ export default {
           disabled: null,
         },
       ],
+      valueGroupTest: "选项4",
+      radioGroupDemo: [
+        {
+          label: "选项1",
+          disabled: null,
+        },
+        {
+          label: "选项2",
+          disabled: null,
+        },
+        {
+          label: "选项3",
+          disabled: null,
+        },
+        {
+          label: "选项4",
+          disabled: null,
+        },
+      ],
     };
   },
   computed: {
@@ -58,3 +85,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.choose-value {
+  color: #999;
+}
+</style>

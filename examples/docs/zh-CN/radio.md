@@ -11,10 +11,22 @@
 
 周一今日来，思路稍微开了，但是突破口是 发现自己对原生的 input[type='radio'] 的使用都不了解（甚至不确定以前了解过没有）
 
-只能用竟然来形容我自己的震惊，就跟飞机没有油还在飞行一样
+只能用竟然来形容我自己的震惊，就跟飞机没有油，机体破破烂烂的还在飞行一样
 
 所以非常有必要先来温习一下原生 input[type='radio'] 的使用
 
+> value 是radio的绑定值，选中时的值(和input[type='text']的value是有一定区别的)
+> checked 控制radio的选中与否
+> name 控制多个单选radio为一组
+
+而在温习 原生 input[type='radio'] 的使用 过程中，我又发现了一个破洞
+
+vuejs 中 v-model 的原理,对各个表单元素都做了特殊处理，并非完全都是 :value='value' @input='handleInput' 的等价
+
+> (重要) v-model 在内部为不同的输入元素使用不同的 property 并抛出不同的事件：
+> - text 和 textarea 元素使用 value property 和 input 事件；
+> - checkbox 和 radio 使用 checked property 和 change 事件；`注意此时 value 是定义选项元素的值，而不是类似input[type='text']的输入值`
+> - select 字段将 value 作为 prop 并将 change 作为事件。
 
 # 原生 input[type='radio'] 温习
 
@@ -115,7 +127,7 @@ v-model 指令在表单元素 `<input>`、`<textarea>` 及 `<select>` 元素上�
 </select>
 ```
 
-# input 自定义样式
+# input[type='radio'] 自定义样式
 
 ## 控制选中时：使用伪元素在 元素内 粗线画圆线
 
@@ -139,3 +151,9 @@ css .circle {
 ```
 
 ## input:checked{} 控制选中颜色
+
+
+# sn-radio-group 的实现
+
+## 报错unexpected side effect in computed properties
+> 不能再computed中改变页面data变量的值，如果需要改变，请使用watch，
